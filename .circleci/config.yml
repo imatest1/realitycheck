@@ -118,19 +118,19 @@ jobs:
           paths:
             - stuff
 
-  # read_workspace:
-  #   <<: *workspaces_defaults
-  #   steps:
-  #     - attach_workspace:
-  #          at: ./attached
-  #     - run: |
-  #         if [[ $(< ./attached/stuff/thing) != '5' ]]; then
-  #           echo 'Sadness, the value is not what we expected, so the workspace write/read did not work'
-  #           exit 1
-  #         else
-  #           echo 'Yay, value matches'
-  #           exit 0
-  #         fi
+  read_workspace:
+    <<: *workspaces_defaults
+    steps:
+      - attach_workspace:
+           at: ./attached
+      - run: |
+          if [[ $(< ./attached/stuff/thing) != '5' ]]; then
+            echo 'Sadness, the value is not what we expected, so the workspace write/read did not work'
+            exit 1
+          else
+            echo 'Yay, value matches'
+            exit 0
+          fi
 
   save_and_restore_cache:
     docker:
@@ -210,7 +210,7 @@ workflows:
       - multi-contexts:
           context: individual-local
       - write_workspace
-  #     - read_workspace:
-  #         requires:
-  #           - write_workspace
+      - read_workspace:
+          requires:
+            - write_workspace
   #     - artifacts_test_results
