@@ -66,15 +66,15 @@ jobs:
     environment:
       SLEEP: 1
 
-  # remote_docker:
-  #   <<: *remote_docker_defaults
-  #   steps:
-  #     - run: which docker
-  #     - run: docker -v
-  #     - setup_remote_docker
-  #     - run:
-  #         <<: *basic_docker_build
-  #     - run: docker version
+  remote_docker:
+    <<: *remote_docker_defaults
+    steps:
+      - run: which docker
+      - run: docker -v
+      - setup_remote_docker
+      - run:
+          <<: *basic_docker_build
+      - run: docker version
 
   # docker_layer_caching:
   #   <<: *remote_docker_defaults
@@ -198,7 +198,7 @@ workflows:
   vm_jobs:
     jobs:
       - machine
-  #     - remote_docker
+      - remote_docker
   #     - docker_layer_caching
   #     - machine_dlc
 
