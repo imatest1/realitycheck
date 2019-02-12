@@ -97,11 +97,11 @@ jobs:
           <<: *basic_docker_build
       - run: docker version
 
-  # # feature jobs
-  # contexts:
-  #   <<: *contexts_defaults
-  #   steps:
-  #     - run: env | grep CONTEXT_END_TO_END_TEST_VAR
+  # feature jobs
+  contexts:
+    <<: *contexts_defaults
+    steps:
+      - run: env | grep CONTEXT_END_TO_END_TEST_VAR
 
   # multi-contexts:
   #   <<: *contexts_defaults
@@ -205,8 +205,8 @@ workflows:
   feature_jobs:
     jobs:
       - save_and_restore_cache
-  #     - contexts:
-  #         context: org-global
+      - contexts:
+          context: org-global
   #     - multi-contexts:
   #         context: individual-local
   #     - write_workspace
