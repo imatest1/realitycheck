@@ -45,9 +45,9 @@ jobs:
     <<: *resource_job_defaults
     resource_class: medium+
 
-  # large: # 4 vCPUs, 8GB RAM
-  #   <<: *resource_job_defaults
-  #   resource_class: large
+  large: # 4 vCPUs, 8GB RAM
+    <<: *resource_job_defaults
+    resource_class: large
 
   # xlarge: # 8 vCPUs, 16GB RAM
   #   <<: *resource_job_defaults
@@ -192,7 +192,7 @@ workflows:
       - small
       - medium
       - medium+
-  #     - large
+      - large
   #     - xlarge
 
   # vm_jobs:
