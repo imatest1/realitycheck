@@ -108,15 +108,15 @@ jobs:
     steps:
       - run: env | grep MULTI_CONTEXT_END_TO_END_VAR
 
-  # write_workspace:
-  #   <<: *workspaces_defaults
-  #   steps:
-  #     - run: mkdir stuff
-  #     - run: echo 5 >./stuff/thing
-  #     - persist_to_workspace:
-  #         root: .
-  #         paths:
-  #           - stuff
+  write_workspace:
+    <<: *workspaces_defaults
+    steps:
+      - run: mkdir stuff
+      - run: echo 5 >./stuff/thing
+      - persist_to_workspace:
+          root: .
+          paths:
+            - stuff
 
   # read_workspace:
   #   <<: *workspaces_defaults
@@ -209,7 +209,7 @@ workflows:
           context: org-global
       - multi-contexts:
           context: individual-local
-  #     - write_workspace
+      - write_workspace
   #     - read_workspace:
   #         requires:
   #           - write_workspace
