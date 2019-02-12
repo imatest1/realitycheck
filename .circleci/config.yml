@@ -53,18 +53,18 @@ jobs:
     <<: *resource_job_defaults
     resource_class: xlarge
 
-  # # vm jobs
-  # machine:
-  #   machine: true
-  #   steps:
-  #     - run: |
-  #         echo $SLEEP
-  #         date
-  #         sleep $SLEEP
-  #         date
-  #         echo 'Done sleeping.'
-  #   environment:
-  #     SLEEP: 1
+  # vm jobs
+  machine:
+    machine: true
+    steps:
+      - run: |
+          echo $SLEEP
+          date
+          sleep $SLEEP
+          date
+          echo 'Done sleeping.'
+    environment:
+      SLEEP: 1
 
   # remote_docker:
   #   <<: *remote_docker_defaults
@@ -195,9 +195,9 @@ workflows:
       - large
       - xlarge
 
-  # vm_jobs:
-  #   jobs:
-  #     - machine
+  vm_jobs:
+    jobs:
+      - machine
   #     - remote_docker
   #     - docker_layer_caching
   #     - machine_dlc
